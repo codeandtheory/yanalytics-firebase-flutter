@@ -36,4 +36,4 @@ Include a snapshot of the Code Coverage report generated when you ran the full u
 
 ##### Documentation #####
 
-Include a snapshot of the documentation coverage report when you ran jazzy locally to generate documentation. We require 100% documentation coverage of all `public` interfaces.
+Include a snapshot of the documentation coverage report when you ran [dartdoc](https://pub.dev/packages/dartdoc/install) locally to generate documentation. We require 100% documentation coverage of all `public` interfaces.

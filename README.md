@@ -20,6 +20,18 @@ Contributing to Y-analytics
 dart pub get
 ```
 
+### Generate documentation
+
+```
+# Install dartdoc
+ dart pub global activate dartdoc
+
+# Run dartdoc in root directory
+
+dartdoc --output docs
+```
+
+
 ## Setup githooks (optional)
 
 If you want to make sure you code is ok before running github actions configure githooks:
