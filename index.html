@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
+  <meta name="generator" content="made with love by dartdoc 6.2.1">
+  <meta name="description" content="yanalytics_firebase API docs, for the Dart programming language.">
+  <title>yanalytics_firebase - Dart API docs</title>
+
+
+  
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" rel="stylesheet">
+  
+  <link rel="stylesheet" href="static-assets/github.css?v1">
+  <link rel="stylesheet" href="static-assets/styles.css?v1">
+  <link rel="icon" href="static-assets/favicon.png?v1">
+
+  
+</head>
+
+
+<body data-base-href="" data-using-base-href="false" class="light-theme">
+
+<div id="overlay-under-drawer"></div>
+
+<header id="title">
+  <span id="sidenav-left-toggle" class="material-symbols-outlined" role="button" tabindex="0">menu</span>
+  <ol class="breadcrumbs gt-separated dark hidden-xs">
+    <li class="self-crumb">yanalytics_firebase package</li>
+  </ol>
+  <div class="self-name">yanalytics_firebase</div>
+  <form class="search navbar-right" role="search">
+    <input type="text" id="search-box" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+  <div class="toggle" id="theme-button">
+    <label for="theme">
+      <input type="checkbox" id="theme" value="light-theme">
+      <span id="dark-theme-button" class="material-symbols-outlined">
+        brightness_4
+      </span>
+      <span id="light-theme-button" class="material-symbols-outlined">
+        brightness_5
+      </span>
+    </label>
+  </div>
+</header>
+<main>
+
+  <div id="dartdoc-main-content" class="main-content">
+      
+<section class="desc markdown">
+  <h2 id="licensing">Licensing</h2>
+<p>Y—Analytics Firebase is licensed under the <a href="LICENSE">Apache 2.0 license</a>.</p>
+<h2 id="documentation">Documentation</h2>
+<p>Documentation is automatically generated from source code comments and rendered as a static website hosted via <a href="https://yml-org.github.io/yanalytics-firebase-flutter/">GitHub Pages</a>
+and <a href="https://pub.dev/packages/yanalytics-firebase">pub.dev</a></p>
+<h2 id="contributing-to-y-analytics">Contributing to Y-analytics</h2>
+<h3 id="install-dependencies">Install dependencies</h3>
+<pre class="language-dart"><code>dart pub get
+</code></pre>
+<h3 id="generate-documentation">Generate documentation</h3>
+<pre class="language-dart"><code># Install dartdoc
+ dart pub global activate dartdoc
+
+# Run dartdoc in root directory
+
+dartdoc --output docs
+</code></pre>
+<h2 id="setup-githooks-optional">Setup githooks (optional)</h2>
+<p>If you want to make sure you code is ok before running github actions configure githooks:</p>
+<pre class="language-dart"><code>git config core.hooksPath .githooks
+</code></pre>
+<h3 id="versioning-strategy">Versioning strategy</h3>
+<p>We utilize <a href="https://semver.org">semantic versioning</a>.</p>
+<pre class="language-dart"><code>{major}.{minor}.{patch}
+</code></pre>
+<p>e.g.</p>
+<pre class="language-dart"><code>1.0.5
+</code></pre>
+<h3 id="branching-strategy">Branching strategy</h3>
+<p>We utilize a simplified branching strategy for our frameworks.</p>
+<ul>
+<li>main (and development) branch is <code>main</code></li>
+<li>both feature (and bugfix) branches branch off of <code>main</code></li>
+<li>feature (and bugfix) branches are merged back into <code>main</code> as they are completed and approved.</li>
+<li><code>main</code> gets tagged with an updated version # for each release</li>
+</ul>
+<h3 id="branch-naming-conventions">Branch naming conventions:</h3>
+<pre class="language-dart"><code>feature/{ticket-number}-{short-description}
+bugfix/{ticket-number}-{short-description}
+</code></pre>
+<p>e.g.</p>
+<pre class="language-dart"><code>feature/CM-44-button
+bugfix/CM-236-textview-color
+</code></pre>
+<h3 id="pull-requests">Pull Requests</h3>
+<p>Prior to submitting a pull request you should:</p>
+<ol>
+<li>Compile and ensure there are no warnings and no errors.</li>
+<li>Run all unit tests and confirm that everything passes.</li>
+<li>Check unit test coverage and confirm that all new / modified code is fully covered.</li>
+<li>Consider using <code>git rebase -i HEAD~{commit-count}</code> to squash your last {commit-count} commits together into functional chunks.</li>
+<li>If HEAD of the parent branch (typically <code>main</code>) has been updated since you created your branch, use <code>git rebase main</code> to rebase your branch.
+<ul>
+<li><em>Never</em> merge the parent branch into your branch.</li>
+<li><em>Always</em> rebase your branch off of the parent branch.</li>
+</ul>
+</li>
+</ol>
+<p>When submitting a pull request:</p>
+<ul>
+<li>Use the <a href=".github/pull_request_template.md">provided pull request template</a> and populate the Introduction, Purpose, and Scope fields at a minimum.</li>
+<li>If you're submitting before and after screenshots, movies, or GIF's, enter them in a two-column table so that they can be viewed side-by-side.</li>
+</ul>
+<p>When merging a pull request:</p>
+<ul>
+<li>Make sure the branch is rebased (not merged) off of the latest HEAD from the parent branch. This keeps our git history easy to read and understand.</li>
+<li>Make sure the branch is deleted upon merge (should be automatic).</li>
+</ul>
+<h3 id="releasing-new-versions">Releasing new versions</h3>
+<ul>
+<li>Tag the corresponding commit with the new version (e.g. <code>1.0.5</code>)</li>
+<li>Push the local tag to remote</li>
+</ul>
+</section>
+
+
+      <section class="summary">
+          <h2>Libraries</h2>
+        <dl>
+          <dt id="yanalytics_firebase">
+  <span class="name"><a href="yanalytics_firebase/yanalytics_firebase-library.html">yanalytics_firebase</a></span> 
+
+</dt>
+<dd>Support for doing something awesome.
+</dd>
+
+          <dt id="yanalytics_firebase_base">
+  <span class="name"><a href="file-___home_runner_work_yanalytics-firebase-flutter_yanalytics-firebase-flutter_lib_src_yanalytics_firebase_base/file-___home_runner_work_yanalytics-firebase-flutter_yanalytics-firebase-flutter_lib_src_yanalytics_firebase_base-library.html">yanalytics_firebase_base</a></span> 
+
+</dt>
+<dd>
+</dd>
+
+        </dl>
+      </section>
+
+  </div> <!-- /.main-content -->
+
+  <div id="dartdoc-sidebar-left" class="sidebar sidebar-offcanvas-left">
+    <header id="header-search-sidebar" class="hidden-l">
+  <form class="search-sidebar" role="search">
+    <input type="text" id="search-sidebar" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+</header>
+
+<ol class="breadcrumbs gt-separated dark hidden-l" id="sidebar-nav">
+  <li class="self-crumb">yanalytics_firebase package</li>
+</ol>
+
+
+    <h5 class="hidden-xs"><span class="package-name">yanalytics_firebase</span> <span class="package-kind">package</span></h5>
+    <ol>
+      <li class="section-title">Libraries</li>
+      <li><a href="yanalytics_firebase/yanalytics_firebase-library.html">yanalytics_firebase</a></li>
+      <li><a href="file-___home_runner_work_yanalytics-firebase-flutter_yanalytics-firebase-flutter_lib_src_yanalytics_firebase_base/file-___home_runner_work_yanalytics-firebase-flutter_yanalytics-firebase-flutter_lib_src_yanalytics_firebase_base-library.html">yanalytics_firebase_base</a></li>
+</ol>
+
+  </div>
+
+  <div id="dartdoc-sidebar-right" class="sidebar sidebar-offcanvas-right">
+  </div>
+
+</main>
+
+<footer>
+  <span class="no-break">
+    yanalytics_firebase
+      1.0.0
+  </span>
+
+  
+</footer>
+
+
+
+<script src="static-assets/highlight.pack.js?v1"></script>
+<script src="static-assets/docs.dart.js"></script>
+
+
+
+</body>
+
+</html>
+
