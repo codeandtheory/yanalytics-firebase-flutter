@@ -1,6 +1,7 @@
 name: yanalytics_firebase
 description: Y—Analytics implementation for Firebase SDK
 version: 1.0.0
+publish_to: none
 repository: https://github.com/yml-org/yanalytics-firebase-flutter
 
 environment:
@@ -21,3 +22,7 @@ dependencies:
     sdk: flutter
   firebase_core: ^2.10.0
   firebase_analytics: ^10.2.0
+  yanalytics:
+    git:
+      url: https://github.com/yml-org/yanalytics-flutter.git
+      ref: main
