@@ -2,6 +2,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:yanalytics_firebase/src/firebase_analytics_configuration.dart';
+import 'package:yanalytics_firebase/src/firebase_event_mapping.dart';
 
 /// A [MockFirebaseOptions] class that extends [Mock] and implements [FirebaseOptions].
 class MockFirebaseOptions extends Mock implements FirebaseOptions {}
@@ -16,7 +17,7 @@ void main() {
 
       expect(config.name, isNull);
       expect(config.options, isNull);
-      expect(config.mappings, isEmpty);
+      expect(config.mappings, isNotEmpty);
     });
 
     /// Tests the initialization of [FirebaseAnalyticsConfiguration] with custom mappings.
@@ -38,7 +39,7 @@ void main() {
 
       expect(config.name, isNull);
       expect(config.options, equals(options));
-      expect(config.mappings, isEmpty);
+      expect(config.mappings, isNotEmpty);
     });
 
     /// Tests the initialization of [FirebaseAnalyticsConfiguration] with custom name and options.
@@ -52,7 +53,7 @@ void main() {
 
       expect(config.name, equals(name));
       expect(config.options, equals(options));
-      expect(config.mappings, isEmpty);
+      expect(config.mappings, isNotEmpty);
     });
   });
 }
