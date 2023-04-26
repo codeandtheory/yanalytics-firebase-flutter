@@ -1,4 +1,5 @@
 import 'package:firebase_core/firebase_core.dart';
+import 'package:yanalytics_firebase/src/firebase_event_mapping.dart';
 
 /// A class that represents the configuration of Firebase Analytics.
 class FirebaseAnalyticsConfiguration {
@@ -62,15 +63,4 @@ class FirebaseAnalyticsConfiguration {
   /// Returns the default [FirebaseAnalyticsConfiguration] instance.
   static FirebaseAnalyticsConfiguration get defaultConfiguration =>
       FirebaseAnalyticsConfiguration();
-}
-
-/// A class that represents the mapping between custom events and Firebase events.
-class FirebaseEventMapping {
-  // Define the properties and methods for the FirebaseEventMapping class
-
-  /// Returns the default mappings for Firebase events.
-  static Map<String, FirebaseEventMapping> get defaultMappings {
-    // Return the default mappings
-    return {};
-  }
 }
