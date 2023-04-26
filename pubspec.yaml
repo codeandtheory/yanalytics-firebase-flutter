@@ -24,5 +24,5 @@ dependencies:
   firebase_analytics: ^10.2.0
   yanalytics:
     git:
-      url: https://github.com/yml-org/yanalytics-flutter.git
+      url: git@github.com:yml-org/yanalytics-flutter.git
       ref: main
