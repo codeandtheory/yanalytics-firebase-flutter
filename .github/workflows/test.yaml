@@ -8,6 +8,8 @@ jobs:
       working-directory: ./app
     runs-on: macos-latest
     steps:
+      - name: "Expose CI Credentials"
+        run: "git config --global credential.helper store"
       - uses: actions/checkout@v3
         with: 
           token: ${{ secrets.ACCESS_TOKEN }}
