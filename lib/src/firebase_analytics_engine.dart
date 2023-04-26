@@ -2,8 +2,7 @@ import 'package:yanalytics_firebase/src/firebase_analytics_configuration.dart';
 import 'package:yanalytics_firebase/src/firebase_event_mapping.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
-import 'package:yanalytics/src/analytics_engine.dart';
-import 'package:yanalytics/src/compound_analytics_engine.dart';
+import 'package:yanalytics/yanalytics.dart';
 
 /// A class that extends AnalyticsEngine that allows to log messages to Firebase Analytics
 class FirebaseAnalyticsEngine extends AnalyticsEngine {
