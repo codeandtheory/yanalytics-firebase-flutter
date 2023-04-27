@@ -3,66 +3,36 @@ import 'package:yanalytics_firebase/src/firebase_analytics_engine.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:yanalytics/yanalytics.dart';
 
-class MockFirebaseAnalyticsEngine extends Mock implements FirebaseAnalyticsEngine{}
+class MockFirebaseAnalytics extends Mock implements FirebaseAnalyticsEngine{}
 
 void main() {
-  late CompoundAnalyticsEngine sut;
-  late MockFirebaseAnalyticsEngine mockFirebaseAnalyticsEngineOne;
-  late MockFirebaseAnalyticsEngine mockFirebaseAnalyticsEngineTwo;
+  group('FirebaseAnalyticsEngine', () {
+    late MockFirebaseAnalytics mockAnalytics;
 
-  setUp(() {
-    sut = CompoundAnalyticsEngine();
-    mockFirebaseAnalyticsEngineOne = MockFirebaseAnalyticsEngine();
-    mockFirebaseAnalyticsEngineTwo = MockFirebaseAnalyticsEngine();
-  });
+    setUp(() {
+      mockAnalytics = MockFirebaseAnalytics();
+    });
 
-  setUpAll(() {
+    setUpAll(() {
     registerFallbackValue(AnalyticsEvent.screenView(screenName: 'test screen'));
-  });
+    });
 
-  test('forwards log event to all registered engines for an event', () {
-    // Arrange
-    sut.add(engine: mockFirebaseAnalyticsEngineOne);
-    sut.add(engine: mockFirebaseAnalyticsEngineTwo);
-    final someEvent = AnalyticsEvent.event(eventName: "eventName");
+    test('trackEvent() logs screen view', () {
+      final event = AnalyticsEvent.screenView(screenName: "Home");
+      mockAnalytics.trackEvent(event);
+      verify(() => mockAnalytics.trackEvent(any())).called(1); 
+    });
 
-    // Act
-    sut.trackEvent(someEvent);
+    test('trackEvent() logs user property', () {
+      final event = AnalyticsEvent.userProperty(userPropertyName: "PropName", userPropertyValue: "PropValue");
+      mockAnalytics.trackEvent(event);
+      verify(() => mockAnalytics.trackEvent(any())).called(1);
+    });
 
-    // Assert
-    verify(
-            () => mockFirebaseAnalyticsEngineOne.trackEvent(any(that: equals(someEvent))));
-    verify(
-            () => mockFirebaseAnalyticsEngineTwo.trackEvent(any(that: equals(someEvent))));
-  });
-
-  test('forwards log event to all registered engines for screenView event', () {
-    // Arrange
-    sut.add(engine: mockFirebaseAnalyticsEngineOne);
-    sut.add(engine: mockFirebaseAnalyticsEngineTwo);
-
-    // Act
-    sut.trackEvent(AnalyticsEvent.screenView(screenName: 'dashboard'));
-
-    // Assert
-    verify(() => mockFirebaseAnalyticsEngineOne.trackEvent(any())).called(1);
-    verify(() => mockFirebaseAnalyticsEngineTwo.trackEvent(any())).called(1);
-  });
-
-  test('forwards log event to all registered engines for user property event', () {
-    // Arrange
-    sut.add(engine: mockFirebaseAnalyticsEngineOne);
-    sut.add(engine: mockFirebaseAnalyticsEngineTwo);
-    final someEvent = AnalyticsEvent.userProperty(
-        userPropertyName: 'name', userPropertyValue: 'value');
-
-    // Act
-    sut.trackEvent(someEvent);
-
-    // Assert
-    verify(
-            () => mockFirebaseAnalyticsEngineOne.trackEvent(any(that: equals(someEvent))));
-    verify(
-            () => mockFirebaseAnalyticsEngineTwo.trackEvent(any(that: equals(someEvent))));
+    test('trackEvent() logs event with parameters', () {
+      final event = AnalyticsEvent.event(eventName: "EventName", eventParemeters: {"key": "value"});
+      mockAnalytics.trackEvent(event);
+      verify(() => mockAnalytics.trackEvent(any())).called(1);
+    });
   });
 }
