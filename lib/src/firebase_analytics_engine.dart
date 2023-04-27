@@ -7,16 +7,16 @@ import 'package:yanalytics/yanalytics.dart';
 /// A class that extends AnalyticsEngine that allows to log messages to Firebase Analytics
 class FirebaseAnalyticsEngine extends AnalyticsEngine {
   /// Info for mapping `AnalyticsEvent` events to Firebase events
-  final Map<String, FirebaseEventMapping> mappings;
+  late Map<String, FirebaseEventMapping> mappings;
   /// Firebase analytics instance 
   late FirebaseAnalytics analytics;
 
   /// Initialize Firebase Engine.
   /// 
   /// [configuration] to configure the engine. 
-  FirebaseAnalyticsEngine({FirebaseAnalyticsConfiguration? configuration})
-      : mappings = configuration?.mappings ?? FirebaseEventMapping.defaultMappings {
-    analytics = FirebaseAnalytics.instance;
+  FirebaseAnalyticsEngine({FirebaseAnalyticsConfiguration? configuration, FirebaseAnalytics? firebaseAnalytics})
+  {
+    mappings = configuration?.mappings ?? FirebaseEventMapping.defaultMappings;
     if (configuration?.name != null && configuration?.options != null)
     {
       Firebase.initializeApp(options: configuration?.options, name: configuration?.name);
@@ -30,6 +30,7 @@ class FirebaseAnalyticsEngine extends AnalyticsEngine {
     {
       Firebase.initializeApp();
     }
+    analytics = firebaseAnalytics ?? FirebaseAnalytics.instance;
   }
   
   /// Log an analytics event to firebase 
@@ -51,8 +52,7 @@ class FirebaseAnalyticsEngine extends AnalyticsEngine {
     {
       String userPropertyName = event.userPropertyName ?? "";
       String? userPropertyValue = event.userPropertyValue;
-      analytics.setUserProperty(name: userPropertyName
-      , value: userPropertyValue);
+      analytics.setUserProperty(name: userPropertyName, value: userPropertyValue);
     }
     else 
     if (event.eventName != null)
