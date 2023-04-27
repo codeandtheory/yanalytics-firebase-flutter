@@ -3,14 +3,14 @@ import 'package:yanalytics_firebase/src/firebase_analytics_engine.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:yanalytics/yanalytics.dart';
 
-class MockFirebaseAnalytics extends Mock implements FirebaseAnalyticsEngine{}
+class MockFirebaseAnalyticsEngine extends Mock implements FirebaseAnalyticsEngine{}
 
 void main() {
   group('FirebaseAnalyticsEngine', () {
-    late MockFirebaseAnalytics mockAnalytics;
+    late MockFirebaseAnalyticsEngine mockAnalytics;
 
     setUp(() {
-      mockAnalytics = MockFirebaseAnalytics();
+      mockAnalytics = MockFirebaseAnalyticsEngine();
     });
 
     setUpAll(() {
