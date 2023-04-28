@@ -48,7 +48,7 @@ void main() {
       expect(mockFirebaseAnalytics.logCalled, isTrue);
     });
 
-    test('trackEvent() logs event user property', () async {
+    test('trackEvent() logs event user property', () {
       final event = AnalyticsEvent.userProperty(userPropertyName: "user property", userPropertyValue: "value");
       sut.trackEvent(event);
       expect(mockFirebaseAnalytics.logCalled, isTrue);
