@@ -37,7 +37,7 @@ class FirebaseAnalyticsEngine extends AnalyticsEngine {
   ///
   /// [event] the event to log
   @override
-  void trackEvent(AnalyticsEvent event) 
+  void trackEvent(AnalyticsEvent event) async
   {
     if (event.screenName != null)
     {
@@ -45,14 +45,14 @@ class FirebaseAnalyticsEngine extends AnalyticsEngine {
       var mapping = mappings[screenViewKey] ?? FirebaseEventMapping.defaultScreenView;
       var name = mapping.name;
       var data = {mapping.topLevelKey: screenName};
-      analytics.logEvent(name: name, parameters: data);
+      await analytics.logEvent(name: name, parameters: data);
     }
     else 
     if (event.userPropertyName != null)
     {
       String userPropertyName = event.userPropertyName ?? "";
       String? userPropertyValue = event.userPropertyValue;
-      analytics.setUserProperty(name: userPropertyName, value: userPropertyValue);
+      await analytics.setUserProperty(name: userPropertyName, value: userPropertyValue);
     }
     else 
     if (event.eventName != null)
@@ -61,11 +61,11 @@ class FirebaseAnalyticsEngine extends AnalyticsEngine {
       Map<String, dynamic>? eventParameters = event.eventParemeters;
       if (event.eventParemeters != null)
       {
-        analytics.logEvent(name: eventName, parameters: eventParameters);
+        await analytics.logEvent(name: eventName, parameters: eventParameters);
       }
       else
       {
-        analytics.logEvent(name: eventName);
+        await analytics.logEvent(name: eventName);
       }
     }
   }

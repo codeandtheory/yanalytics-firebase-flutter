@@ -37,21 +37,18 @@ void main() {
     });
 
     test('trackEvent() logs screen name event', () async {
-      TestWidgetsFlutterBinding.ensureInitialized();
       final event = AnalyticsEvent.screenView(screenName: "ScreenView");
       sut.trackEvent(event);
       expect(mockFirebaseAnalytics.logCalled, isTrue);
     });
 
     test('trackEvent() logs event with parameters', () async {
-      TestWidgetsFlutterBinding.ensureInitialized();
       final event = AnalyticsEvent.event(eventName: "name", eventParemeters: {"key": "value"});
       sut.trackEvent(event);
       expect(mockFirebaseAnalytics.logCalled, isTrue);
     });
 
     test('trackEvent() logs event user property', () async {
-      TestWidgetsFlutterBinding.ensureInitialized();
       final event = AnalyticsEvent.userProperty(userPropertyName: "user property", userPropertyValue: "value");
       sut.trackEvent(event);
       expect(mockFirebaseAnalytics.logCalled, isTrue);
