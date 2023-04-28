@@ -37,7 +37,7 @@ class FirebaseAnalyticsEngine extends AnalyticsEngine {
   ///
   /// [event] the event to log
   @override
-  void trackEvent(AnalyticsEvent event) async
+  Future<void> trackEvent(AnalyticsEvent event) async
   {
     if (event.screenName != null)
     {
