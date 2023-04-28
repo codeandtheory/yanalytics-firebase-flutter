@@ -21,13 +21,13 @@ void main() {
       verify(() => mockFirebaseEventsTrigger.logEvent('screenView', {'screenName': 'ScreenViewed'}));
     });
 
-    test('trackEvent() logs event with parameters', () async {
+    test('trackEvent() logs event with parameters', () {
       final event = AnalyticsEvent.event(eventName: "name", eventParemeters: {"key": "value"});
       sut.trackEvent(event);
       verify(() => mockFirebaseEventsTrigger.logEvent("name", {"key": "value"})).called(1);
     });
 
-    test('trackEvent() logs event user property', () async {
+    test('trackEvent() logs event user property', () {
       final event = AnalyticsEvent.userProperty(userPropertyName: "user property", userPropertyValue: "value");
       sut.trackEvent(event);
       verify(() => mockFirebaseEventsTrigger.setUserProperty("user property", "value")).called(1);
