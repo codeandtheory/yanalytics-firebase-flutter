@@ -46,6 +46,7 @@ class FirebaseAnalyticsEngine extends AnalyticsEngine {
       var name = mapping.name;
       var data = {mapping.topLevelKey: screenName};
       await analytics.logEvent(name: name, parameters: data);
+      return Future.value();
     }
     else 
     if (event.userPropertyName != null)
@@ -53,6 +54,7 @@ class FirebaseAnalyticsEngine extends AnalyticsEngine {
       String userPropertyName = event.userPropertyName ?? "";
       String? userPropertyValue = event.userPropertyValue;
       await analytics.setUserProperty(name: userPropertyName, value: userPropertyValue);
+      return Future.value();
     }
     else 
     if (event.eventName != null)
@@ -62,10 +64,12 @@ class FirebaseAnalyticsEngine extends AnalyticsEngine {
       if (event.eventParemeters != null)
       {
         await analytics.logEvent(name: eventName, parameters: eventParameters);
+        return Future.value();
       }
       else
       {
         await analytics.logEvent(name: eventName);
+        return Future.value();
       }
     }
   }
