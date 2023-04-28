@@ -2,56 +2,35 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:yanalytics_firebase/src/firebase_analytics_engine.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:yanalytics/yanalytics.dart';
-import 'package:firebase_analytics/firebase_analytics.dart';
 
-class MockFirebaseAnalytics extends Mock implements FirebaseAnalytics
-{
-  late bool logCalled;
-  @override
-  Future<void> logEvent({required String name, Map<String, Object?>? parameters, AnalyticsCallOptions? callOptions}) 
-  {
-    logCalled = true;
-    return Future.value();
-  }
-
-  @override
-  Future<void> setUserProperty({required String name, required String? value, AnalyticsCallOptions? callOptions}) {
-    logCalled = true;
-    return Future.value();
-  }
-}
+class MockFirebaseEventsTrigger extends Mock implements FirebaseEventsTrigger {}
 
 void main() {
   group('FirebaseAnalyticsEngine', () {
     late FirebaseAnalyticsEngine sut; 
-    late MockFirebaseAnalytics mockFirebaseAnalytics;
+    late MockFirebaseEventsTrigger mockFirebaseEventsTrigger;
 
     setUp(() {
-      mockFirebaseAnalytics = MockFirebaseAnalytics();
-      sut = FirebaseAnalyticsEngine(configuration: null, firebaseAnalytics: mockFirebaseAnalytics);
+      mockFirebaseEventsTrigger = MockFirebaseEventsTrigger();
+      sut = FirebaseAnalyticsEngine(configuration: null, firebaseAnalytics: mockFirebaseEventsTrigger);
     });
 
-    setUpAll(() {
-      TestWidgetsFlutterBinding.ensureInitialized();
-      registerFallbackValue(AnalyticsEvent.screenView(screenName: 'test screen'));
-    });
-
-    test('trackEvent() logs screen name event', () async {
-      final event = AnalyticsEvent.screenView(screenName: "ScreenView");
-      await sut.trackEvent(event);
-      expect(mockFirebaseAnalytics.logCalled, isTrue);
+    test('trackEvent() logs screen name event', () {
+      final event = AnalyticsEvent.screenView(screenName: "ScreenViewed");
+      sut.trackEvent(event);
+      verify(() => mockFirebaseEventsTrigger.logEvent('screenView', {'screenName': 'ScreenViewed'}));
     });
 
     test('trackEvent() logs event with parameters', () async {
       final event = AnalyticsEvent.event(eventName: "name", eventParemeters: {"key": "value"});
-      await sut.trackEvent(event);
-      expect(mockFirebaseAnalytics.logCalled, isTrue);
+      sut.trackEvent(event);
+      verify(() => mockFirebaseEventsTrigger.logEvent("name", {"key": "value"})).called(1);
     });
 
     test('trackEvent() logs event user property', () async {
       final event = AnalyticsEvent.userProperty(userPropertyName: "user property", userPropertyValue: "value");
-      await sut.trackEvent(event);
-      expect(mockFirebaseAnalytics.logCalled, isTrue);
+      sut.trackEvent(event);
+      verify(() => mockFirebaseEventsTrigger.setUserProperty("user property", "value")).called(1);
     });
   });
 }
